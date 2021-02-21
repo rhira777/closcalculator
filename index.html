@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <title>
+      Multi-stage Clos Calculator
+    </title>
+    <style>
+      input{
+        width: 100px;
+      }
+      table th{
+        text-align: center; 
+      }
+      table td{
+        text-align: center; 
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th></th>
+        <th>levels</th>
+        <th>ports</th>
+        <th>hosts</th>
+      </tr>
+      <tr>
+        <td>input</td>
+        <td><input id="input_number_of_level" type="text" value="2" /></td>
+        <td><input id="input_number_of_port" type="text" value="32" /></td>
+        <td><input id="input_number_of_host" type="text" disabled /></td>
+      </tr>
+      <tr>
+        <td>output</td>
+        <td><input id="output_number_of_level" type="text"  disabled /></td>
+        <td><input id="output_number_of_port" type="text"  disabled /></td>
+        <td><input id="output_number_of_host" type="text" /></td>
+      </tr>
+    </table>
+    <button type="button" id="calculate">calculate</button>
+    <button type="button" id="clear">clear</button>
+    <script type="text/javascript">
+/*calculate******************************************************************************/
+      document.getElementById("calculate").onclick = function() {
+        var levels = document.getElementById("input_number_of_level").value;
+        var ports = document.getElementById("input_number_of_port").value;
+        var hosts = document.getElementById("input_number_of_host").value;
+        levels = parseInt(levels);
+        ports = parseInt(ports);
+        if (levels >= 2 && Number.isNaN(ports) == false){
+          hosts = ports;
+          for (var i=1;i<levels;i++){
+            hosts =  hosts * ports / 2
+          }
+        }
+        if(document.getElementById("input_number_of_level").value == "")
+          document.getElementById("output_number_of_level").value = levels;
+        if(document.getElementById("input_number_of_port").value == "")
+          document.getElementById("output_number_of_port").value = ports;
+        if(document.getElementById("input_number_of_host").value == "")
+          document.getElementById("output_number_of_host").value = hosts;
+      }
+/*clear******************************************************************************/
+      document.getElementById("clear").onclick = function() {
+        var empty = "";
+        document.getElementById("input_number_of_level").value = empty;
+        document.getElementById("input_number_of_port").value = empty;
+        document.getElementById("input_number_of_host").value = empty;
+        document.getElementById("output_number_of_level").value = empty;
+        document.getElementById("output_number_of_port").value = empty;
+        document.getElementById("output_number_of_host").value = empty;
+      }
+    </script>
+  <body>
+</html>
